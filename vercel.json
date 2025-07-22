@@ -1,45 +1,5 @@
 {
-  "functions": {
-    "app/**": {
-      "runtime": "@vercel/static-build"
-    }
-  },
-  "routes": [
-    {
-      "src": "/Styles/(.*)",
-      "dest": "/Styles/$1"
-    },
-    {
-      "src": "/Scripts/(.*)", 
-      "dest": "/Scripts/$1"
-    },
-    {
-      "src": "/Assets/(.*)",
-      "dest": "/Assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/Styles/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/Scripts/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type", 
-          "value": "application/javascript"
-        }
-      ]
-    }
-  ]
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/index.html" }
+    ]
 }
