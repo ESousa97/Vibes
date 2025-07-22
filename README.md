@@ -65,22 +65,22 @@ A arquitetura do "Vibes" é inteiramente client-side, otimizada para performance
 
 ```mermaid
 graph TD
-    subgraph Browser Environment
-        UI[🖼️ Camada de Apresentação / View <br> (HTML DOM)]
-        Logic[⚙️ Lógica de Controle / Controller <br> (VibesSlideshow Class)]
-        State[🧠 Modelo de Estado / Model <br> (JS Object State: currentSlide, isPlaying)]
-        Engine[🎨 Motor de Animação / Animation Engine <br> (CSS Keyframes & Transitions)]
-        Events[🖱️ Gestor de Eventos / Event Manager <br> (DOM Event Listeners)]
+    subgraph "Browser Environment"
+        UI["🖼️ Camada de Apresentação / View<br/>(HTML DOM)"]
+        Logic["⚙️ Lógica de Controle / Controller<br/>(VibesSlideshow Class)"]
+        State["🧠 Modelo de Estado / Model<br/>(JS Object State: currentSlide, isPlaying)"]
+        Engine["🎨 Motor de Animação / Animation Engine<br/>(CSS Keyframes & Transitions)"]
+        Events["🖱️ Gestor de Eventos / Event Manager<br/>(DOM Event Listeners)"]
     end
 
-    User[👤 Usuário] -- Interage com --> UI
-    User -- Interage com --> Events
-    Events -- Dispara Ações --> Logic
-    Logic -- Atualiza --> State
-    Logic -- Manipula --> UI
-    Logic -- Controla --> Engine
-    State -- Reflete em --> UI
-    Engine -- Renderiza em --> UI
+    User["👤 Usuário"] --> UI
+    User --> Events
+    Events --> Logic
+    Logic --> State
+    Logic --> UI
+    Logic --> Engine
+    State --> UI
+    Engine --> UI
 ```
 
 **Componentes Arquiteturais:**
