@@ -54,7 +54,7 @@ A motivação central é investigar a interseção entre design de interface, te
 ## 🎬 Demonstração Visual
 
 <p align="center">
-  <img src="./Assets/vibe.gif" alt="Demonstração do Vibes em funcionamento" width="800">
+  <img src="./public/vibe.gif" alt="Demonstração do Vibes em funcionamento" width="800">
 </p>
 
 > **Demonstração interativa:** O GIF acima mostra o slideshow imersivo de paisagens naturais, animações procedurais de fundo e controles de navegação intuitivos para uma experiência de relaxamento contemplativo.
