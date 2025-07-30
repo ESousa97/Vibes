@@ -30,7 +30,6 @@ A principal inovação reside na orquestração de múltiplas tecnologias web na
 ## Sumário (Table of Contents)
 
 1. [Introdução e Motivação](#introdução-e-motivação)
-2. [🎬 Demonstração Visual](#-demonstração-visual)
 3. [Arquitetura do Sistema](#arquitetura-do-sistema)
 4. [Decisões de Design Chave](#decisões-de-design-chave)
 5. [✨ Funcionalidades Detalhadas (com Casos de Uso)](#-funcionalidades-detalhadas-com-casos-de-uso)
@@ -50,14 +49,6 @@ A principal inovação reside na orquestração de múltiplas tecnologias web na
 No cenário digital contemporâneo, caracterizado pela sobrecarga de informações (*infobesity*) e pela constante demanda por atenção, emerge uma necessidade crítica por espaços digitais que promovam a tranquilidade e a introspecção. O projeto "Vibes" nasce como uma antítese a essa tendência, propondo um ambiente web minimalista e imersivo, projetado para funcionar como um refúgio digital.
 
 A motivação central é investigar a interseção entre design de interface, tecnologia front-end e bem-estar psicológico, explorando como a manipulação cuidadosa de elementos visuais e interativos pode influenciar positivamente o estado emocional do usuário. A proposta de valor única reside em sua abordagem purista e performática, evitando deliberadamente frameworks JavaScript pesados para demonstrar a potência das tecnologias web fundamentais.
-
-## 🎬 Demonstração Visual
-
-<p align="center">
-  <img src="./public/vibe.gif" alt="Demonstração do Vibes em funcionamento" width="800">
-</p>
-
-> **Demonstração interativa:** O GIF acima mostra o slideshow imersivo de paisagens naturais, animações procedurais de fundo e controles de navegação intuitivos para uma experiência de relaxamento contemplativo.
 
 ## Arquitetura do Sistema
 
