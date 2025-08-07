@@ -1,5 +1,7 @@
 {
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-    ]
+  "framework": null,
+  "public": true,
+  "github": {
+    "silent": true
+  }
 }
