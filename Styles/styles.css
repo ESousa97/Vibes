@@ -11,8 +11,8 @@
     --accent-color: #ff6b6b;
     --bg-dark: #0a0a0a;
     --bg-secondary: #1a1a1a;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgb(255 255 255 / 0.05);
+    --glass-border: rgb(255 255 255 / 0.1);
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -215,11 +215,11 @@ body {
 @keyframes titlePulse {
     0% { 
         opacity: 0.8; 
-        text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        text-shadow: 0 0 10px rgb(0 245 255 / 0.3);
     }
     100% { 
         opacity: 1; 
-        text-shadow: 0 0 30px rgba(0, 245, 255, 0.8);
+        text-shadow: 0 0 30px rgb(0 245 255 / 0.8);
     }
 }
 
@@ -238,11 +238,11 @@ body {
 @keyframes underlineGlow {
     0% { 
         opacity: 0.5; 
-        box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        box-shadow: 0 0 10px rgb(0 245 255 / 0.3);
     }
     100% { 
         opacity: 1; 
-        box-shadow: 0 0 20px rgba(0, 245, 255, 0.8);
+        box-shadow: 0 0 20px rgb(0 245 255 / 0.8);
     }
 }
 
@@ -281,7 +281,7 @@ body {
     background: var(--primary-color);
     color: var(--bg-dark);
     transform: scale(1.2) rotate(10deg);
-    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
+    box-shadow: 0 10px 30px rgb(0 245 255 / 0.4);
 }
 
 .control-btn:active {
@@ -317,9 +317,9 @@ body {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 20px 60px rgb(0 0 0 / 0.3),
+        0 0 0 1px rgb(255 255 255 / 0.05),
+        inset 0 1px 0 rgb(255 255 255 / 0.1);
 }
 
 .slides-track {
@@ -356,6 +356,20 @@ body {
     transform: scale(1.1);
 }
 
+.image-placeholder {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
 .slide-overlay {
     position: absolute;
     top: 0;
@@ -364,9 +378,9 @@ body {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(0, 0, 0, 0.1) 0%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.5) 100%
+        rgb(0 0 0 / 0.1) 0%,
+        rgb(0 0 0 / 0.3) 50%,
+        rgb(0 0 0 / 0.5) 100%
     );
     z-index: 2;
 }
@@ -392,14 +406,14 @@ body {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 10px rgb(0 0 0 / 0.5);
 }
 
 .slide-content p {
     font-size: 16px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    color: rgb(255 255 255 / 0.9);
+    text-shadow: 0 1px 5px rgb(0 0 0 / 0.5);
 }
 
 /* Slide indicators */
@@ -417,7 +431,7 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgb(255 255 255 / 0.3);
     cursor: pointer;
     transition: var(--transition-smooth);
     backdrop-filter: blur(10px);
@@ -442,7 +456,7 @@ body {
     left: 0;
     width: 100%;
     height: 4px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255 255 255 / 0.1);
     z-index: 4;
 }
 
@@ -465,7 +479,7 @@ body {
     height: fit-content;
     position: sticky;
     top: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.2);
 }
 
 .panel-content h3 {
@@ -535,7 +549,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.2), transparent);
     transition: left 0.6s ease;
 }
 
@@ -545,7 +559,7 @@ body {
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    box-shadow: 0 10px 30px rgb(0 245 255 / 0.3);
 }
 
 .cta-button:active {
@@ -647,7 +661,7 @@ body {
     background: var(--primary-color);
     color: var(--bg-dark);
     transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 20px rgba(0, 245, 255, 0.3);
+    box-shadow: 0 10px 20px rgb(0 245 255 / 0.3);
 }
 
 /* Responsive design */
@@ -774,8 +788,8 @@ body {
 /* Dark mode enhancement */
 @media (prefers-color-scheme: dark) {
     :root {
-        --glass-bg: rgba(255, 255, 255, 0.03);
-        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-bg: rgb(255 255 255 / 0.03);
+        --glass-border: rgb(255 255 255 / 0.08);
     }
 }
 
@@ -801,16 +815,16 @@ body {
 }
 
 /* High contrast mode */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
     :root {
         --primary-color: #00ffff;
         --secondary-color: #ff00ff;
         --accent-color: #ffff00;
-        --glass-border: rgba(255, 255, 255, 0.3);
+        --glass-border: rgb(255 255 255 / 0.3);
     }
     
     .slide-overlay {
-        background: rgba(0, 0, 0, 0.7);
+        background: rgb(0 0 0 / 0.7);
     }
 }
 
@@ -885,9 +899,9 @@ body {
 
 .loading {
     background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.2) 50%, 
-        rgba(255, 255, 255, 0.1) 100%);
+        rgb(255 255 255 / 0.1) 0%, 
+        rgb(255 255 255 / 0.2) 50%, 
+        rgb(255 255 255 / 0.1) 100%);
     background-size: 200px 100%;
     animation: shimmer 1.5s infinite;
 }

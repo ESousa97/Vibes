@@ -20,12 +20,13 @@ A principal inovação reside na orquestração de múltiplas tecnologias web na
 
 ## Badges
 
-[![CI](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/ci.yml?style=for-the-badge&label=CI)](https://github.com/ESousa97/Vibes/actions/workflows/ci.yml)
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/codeql.yml?style=for-the-badge&label=CodeQL)](https://github.com/ESousa97/Vibes/actions/workflows/codeql.yml)
-[![Code Quality](https://img.shields.io/badge/code%20quality-eslint-blue?style=for-the-badge&logo=eslint)](https://eslint.org/)
-[![Coverage](https://img.shields.io/badge/coverage-local%20only-lightgrey?style=for-the-badge)](https://github.com/ESousa97/Vibes/actions)
-[![Licença](https://img.shields.io/badge/license-MIT-green?style=for-the-badge&logo=github)](LICENSE)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vibes-lemon.vercel.app)
+[![CI](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/ci.yml?style=flat&label=CI&logo=githubactions&logoColor=white)](https://github.com/ESousa97/Vibes/actions/workflows/ci.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/codeql.yml?style=flat&label=CodeQL&logo=github)](https://github.com/ESousa97/Vibes/actions/workflows/codeql.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/ESousa97/Vibes/badge?style=flat)](https://www.codefactor.io/repository/github/ESousa97/Vibes)
+[![Code Quality](https://img.shields.io/badge/code%20quality-eslint-blue?style=flat&logo=eslint)](https://eslint.org/)
+[![Coverage](https://img.shields.io/badge/coverage-local%20only-lightgrey?style=flat)](https://github.com/ESousa97/Vibes/actions)
+[![Licença](https://img.shields.io/badge/license-MIT-green?style=flat&logo=github)](LICENSE)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vibes-lemon.vercel.app)
 
 ## Sumário (Table of Contents)
 
