@@ -1,0 +1,30 @@
+{
+  "name": "vibes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "html-validate \"**/*.html\"",
+    "lint:css": "stylelint \"Styles/**/*.css\"",
+    "lint:js": "eslint \"scripts/**/*.js\"",
+    "format": "prettier --write \"**/*.{html,md,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{html,md,json,yml,yaml}\"",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "build": "node tools/verify-build.js",
+    "audit": "npm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.17",
+    "eslint": "^9.18.0",
+    "eslint-plugin-html": "^8.1.1",
+    "globals": "^15.12.0",
+    "html-validate": "^10.5.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.12.0",
+    "stylelint-config-standard": "^36.0.1",
+    "vitest": "^4.0.17"
+  }
+}

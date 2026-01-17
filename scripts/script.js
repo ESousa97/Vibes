@@ -46,7 +46,7 @@ class VibesSlideshow {
 
         // CTA button
         const ctaButton = document.querySelector('.cta-button');
-        ctaButton?.addEventListener('click', () => this.handleCTAClick());
+        ctaButton?.addEventListener('click', (event) => this.handleCTAClick(event));
     }
 
     startSlideshow() {
@@ -269,7 +269,7 @@ class VibesSlideshow {
         }
     }
 
-    handleCTAClick() {
+    handleCTAClick(event) {
         // Smooth scroll to slideshow
         const slideshowContainer = document.querySelector('.slideshow-container');
         if (slideshowContainer) {
@@ -280,10 +280,12 @@ class VibesSlideshow {
         }
         
         // Add visual feedback
-        this.addRippleEffect(event.target);
+        if (event?.target) {
+            this.addRippleEffect(event.target, event);
+        }
     }
 
-    addRippleEffect(element) {
+    addRippleEffect(element, event) {
         const ripple = document.createElement('span');
         const rect = element.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -473,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // VibesUtils.initializeThemeToggle();
     
     // Initialize main slideshow
-    const slideshow = new VibesSlideshow();
+    new VibesSlideshow();
     
     // Add loading state management
     window.addEventListener('load', () => {

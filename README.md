@@ -18,14 +18,14 @@ Em seu núcleo, "Vibes" oferece uma galeria interativa de paisagens naturais, or
 
 A principal inovação reside na orquestração de múltiplas tecnologias web nativas — como `IntersectionObserver` para otimização de performance, animações de keyframes aceleradas por GPU e design responsivo com efeitos de glassmorphism — para construir uma experiência performática, esteticamente sofisticada e emocionalmente ressonante, sem sobrecarga de frameworks externos.
 
-## Badges Abrangentes
+## Badges
 
-![Licença](https://img.shields.io/github/license/ESousa97/Vibes?style=for-the-badge&logo=github&label=Licen%C3%A7a)
-![Linguagem Principal](https://img.shields.io/github/languages/top/ESousa97/Vibes?style=for-the-badge&logo=javascript&logoColor=yellow)
-![Tamanho do Repositório](https://img.shields.io/github/repo-size/ESousa97/Vibes?style=for-the-badge&logo=github)
-![Último Commit](https://img.shields.io/github/last-commit/ESousa97/Vibes?style=for-the-badge&logo=git&logoColor=white)
-![Issues Abertas](https://img.shields.io/github/issues/ESousa97/Vibes?style=for-the-badge&logo=github)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+[![CI](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/ci.yml?style=for-the-badge&label=CI)](https://github.com/ESousa97/Vibes/actions/workflows/ci.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/codeql.yml?style=for-the-badge&label=CodeQL)](https://github.com/ESousa97/Vibes/actions/workflows/codeql.yml)
+[![Code Quality](https://img.shields.io/badge/code%20quality-eslint-blue?style=for-the-badge&logo=eslint)](https://eslint.org/)
+[![Coverage](https://img.shields.io/badge/coverage-local%20only-lightgrey?style=for-the-badge)](https://github.com/ESousa97/Vibes/actions)
+[![Licença](https://img.shields.io/badge/license-MIT-green?style=for-the-badge&logo=github)](LICENSE)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vibes-lemon.vercel.app)
 
 ## Sumário (Table of Contents)
 
@@ -94,7 +94,7 @@ graph TD
 
 3. **Otimização Proativa com `IntersectionObserver`:** Implementação para pausar slideshow quando fora do viewport, conservando recursos CPU e bateria para melhor experiência do usuário.
 
-4. **Estilo "CSS-in-HTML" para Simplicidade:** CSS embutido no `index.html` reduz latência ao eliminar requisição adicional, garantindo entrega de conteúdo crítico em única resposta HTTP.
+4. **CSS Modular para Manutenibilidade:** Estilos consolidados em `Styles/styles.css`, mantendo separação clara entre estrutura e apresentação.
 
 5. **Design Glassmorphism:** Efeitos visuais modernos com backdrop-filter e transparências para criar atmosfera imersiva e contemporânea.
 
@@ -140,29 +140,29 @@ graph TD
 ## 📂 Estrutura Detalhada do Código-Fonte
 
 ```
-Vibes-main/
-├── Assets/                # Ativos estáticos da aplicação
-│   ├── demo.gif           # GIF de demonstração do projeto
-│   ├── nature1.png        # Imagens utilizadas no slideshow
-│   ├── nature2.png
-│   ├── nature3.png
-│   ├── nature4.png
-│   └── vibes.png          # Logo ou imagem de branding
-├── Styles/                # Folhas de estilo modulares
-│   └── styles.css         # Versão modular do CSS (para refatoração futura)
-├── scripts/               # Scripts JavaScript
-│   └── script.js          # Arquivo principal com classe VibesSlideshow
-├── index.html             # Ponto de entrada da aplicação
-├── LICENCE                # Arquivo de licença MIT
+Vibes/
+├── .github/               # Workflows e templates
+├── Assets/                # Imagens do slideshow
+├── Styles/                # Estilos CSS
+├── scripts/               # JavaScript da aplicação
+├── docs/                  # Documentação adicional
+├── public
+├── src/                   # Reservado para modularização futura
+├── tests/                 # Testes automatizados
+├── tools/                 # Scripts de verificação
+├── index.html             # Ponto de entrada
+├── LICENSE                # Licença MIT
+├── package.json           # Scripts e ferramentas
 ├── vercel.json            # Configuração para deploy Vercel
-└── README.md              # Este arquivo de documentação
+└── README.md              # Documentação
 ```
 
 **Detalhamento dos Arquivos:**
 
-- `index.html`: Ponto de entrada contendo estrutura HTML e CSS embutido para otimização de carregamento
-- `script.js`: Classe `VibesSlideshow` com toda lógica de controle, estado e eventos
-- `Assets/`: Diretório com todas as imagens do slideshow e recursos visuais
+- `index.html`: Estrutura HTML e referências para CSS/JS externos
+- `Styles/`: Folha de estilos principal
+- `scripts/`: Lógica do slideshow
+- `tests/`: Base mínima de testes com Vitest + JSDOM
 - `vercel.json`: Configuração de rewrites para comportamento de SPA
 
 ## 📋 Pré-requisitos Avançados
@@ -179,47 +179,35 @@ Para desenvolvimento e execução local:
 
 ## 🚀 Guia de Instalação e Configuração
 
-A aplicação foi projetada para execução sem dependências ou processos de compilação.
-
 1. **Clonar o Repositório:**
 ```bash
 git clone https://github.com/ESousa97/Vibes.git
 cd Vibes
 ```
 
-2. **Executar a Aplicação:**
-Como o projeto não possui dependências de pacotes, a execução é direta:
-
+2. **Rodar localmente:**
 ```bash
-# Método Simples
 # Abra index.html diretamente no navegador
-
-# Método Recomendado (VS Code + Live Server)
-# Clique com botão direito em index.html
-# Selecione "Open with Live Server"
+# ou use um servidor local (ex: Live Server)
 ```
 
-3. **Desenvolvimento Avançado (Opcional):**
+3. **Ferramentas de qualidade (opcional):**
 ```bash
-# Servidor HTTP simples com Python
-python -m http.server 8000
-
-# Servidor HTTP com Node.js
-npx serve .
-
-# Acesse: http://localhost:8000
+npm install
+npm run lint
+npm run test
 ```
 
 ### Scripts de Desenvolvimento
 ```bash
-# Validação HTML (opcional)
-npx html-validate index.html
+# Lint completo
+npm run lint
 
-# Análise de JavaScript (opcional)
-npx eslint scripts/script.js
+# Testes com cobertura
+npm run test
 
-# Otimização de imagens (opcional)
-npx imagemin Assets/*.png --out-dir=optimized/
+# Verificação de build estático
+npm run build
 ```
 
 ## ⚙️ Uso Avançado e Exemplos
@@ -258,26 +246,12 @@ vibesSlideshow.togglePlayPause();
 ## 🧪 Estratégia de Testes e Qualidade de Código
 
 **Qualidade Atual:**
-- Código organizado em classe JavaScript ES6+
-- Separação clara entre lógica, estado e apresentação
-- Uso de APIs web modernas (IntersectionObserver)
-- Animações otimizadas com aceleração GPU
+- Lint HTML/CSS/JS com `html-validate`, `stylelint` e `eslint`.
+- Testes básicos com Vitest + JSDOM.
 
-**Estratégia de Testes Proposta:**
-
-**Testes Unitários (Jest):**
-- **Classe VibesSlideshow:** Testar métodos `nextSlide`, `previousSlide`, `togglePlayPause`
-- **Gerenciamento de Estado:** Validar propriedades `currentSlide`, `isPlaying`
-- **DOM Manipulation:** Usar jsdom para testar manipulação de classes CSS
-
-**Testes de Integração/E2E (Cypress):**
-- **Interação do Usuário:** Simular cliques, pressionamento de teclas, gestos swipe
-- **Comportamento Visual:** Verificar se slide ativo muda, classes `.active` aplicadas
-- **Performance:** Testar pausas automáticas quando fora do viewport
-
-**Testes Visuais de Regressão:**
-- **Snapshots:** Capturar screenshots para comparação de layout
-- **Animações:** Verificar se efeitos glassmorphism e partículas funcionam corretamente
+**Testes Implementados:**
+- Validação de quantidade de slides e indicadores.
+- Verificação de avanço de slide ao chamar `nextSlide()`.
 
 ## 🚢 Deployment Detalhado e Escalabilidade
 
@@ -306,7 +280,7 @@ vibesSlideshow.togglePlayPause();
 **Otimizações de Produção:**
 ```bash
 # Minificação de CSS
-npx clean-css-cli --output styles.min.css styles/styles.css
+npx clean-css-cli --output styles.min.css Styles/styles.css
 
 # Compressão de imagens
 npx imagemin Assets/*.png --out-dir=optimized/
@@ -337,7 +311,7 @@ npx lighthouse https://vibes-lemon.vercel.app
 
 ## 📜 Licença e Aspectos Legais
 
-Este projeto é distribuído sob a **Licença MIT**, uma licença permissiva que permite reutilização, modificação e distribuição do código (inclusive para fins comerciais), desde que o aviso de direitos autorais seja mantido. Para detalhes completos, consulte o arquivo [LICENCE](https://github.com/ESousa97/Vibes/blob/main/LICENCE).
+Este projeto é distribuído sob a **Licença MIT**, uma licença permissiva que permite reutilização, modificação e distribuição do código (inclusive para fins comerciais), desde que o aviso de direitos autorais seja mantido. Para detalhes completos, consulte o arquivo [LICENSE](LICENSE).
 
 ## 📞 Contato
 
