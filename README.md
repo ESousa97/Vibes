@@ -1,336 +1,308 @@
-# Vibes: Uma Análise Arquitetural de Experiências Web Imersivas
+<div align="center">
 
-**Uma Imersão Sinestésica em Paisagens Digitais para o Bem-Estar Contemplativo.**
+# Vibes
 
-<p align="center">
-  <a href="https://vibes-lemon.vercel.app" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/🚀%20Ver%20Demo%20Online-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Demo Online">
-  </a>
-</p>
+[![CI](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/ci.yml?style=flat&logo=github-actions&logoColor=white&label=CI)](https://github.com/ESousa97/Vibes/actions/workflows/ci.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/codeql.yml?style=flat&logo=github-actions&logoColor=white&label=CodeQL)](https://github.com/ESousa97/Vibes/actions/workflows/codeql.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/ESousa97/Vibes/badge?style=flat)](https://www.codefactor.io/repository/github/ESousa97/Vibes)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/Status-Archived-lightgrey.svg?style=flat&logo=archive&logoColor=white)](#)
+
+**Aplicação web imersiva para relaxamento e contemplação — slideshow de paisagens com animações CSS procedurais, controle multimodal e otimização via IntersectionObserver, tudo em Vanilla JS sem dependências.**
+
+[Demo](https://vibes-lemon.vercel.app)
+
+</div>
 
 ---
 
-## Abstract (Resumo Técnico)
+> **⚠️ Projeto Arquivado**
+> Este projeto não recebe mais atualizações ou correções. O código permanece disponível como referência e pode ser utilizado livremente sob a licença MIT. Fique à vontade para fazer fork caso deseje continuar o desenvolvimento.
 
-Este documento delineia a arquitetura e a implementação do projeto "Vibes", uma aplicação web de página única (SPA) concebida como um santuário digital para relaxamento e contemplação. O projeto aborda o crescente problema da fadiga digital, propondo uma solução que se afasta dos paradigmas de interação de alta densidade informativa.
+---
 
-Em seu núcleo, "Vibes" oferece uma galeria interativa de paisagens naturais, orquestrada para induzir um estado de calma e bem-estar. A metodologia empregada se baseia em uma arquitetura puramente client-side, utilizando Vanilla JavaScript (ES6+) para lógica de controle e gerenciamento de estado, e animações CSS3 avançadas para criação de uma atmosfera visualmente rica e procedural.
+## Índice
 
-A principal inovação reside na orquestração de múltiplas tecnologias web nativas — como `IntersectionObserver` para otimização de performance, animações de keyframes aceleradas por GPU e design responsivo com efeitos de glassmorphism — para construir uma experiência performática, esteticamente sofisticada e emocionalmente ressonante, sem sobrecarga de frameworks externos.
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Arquitetura do Sistema](#arquitetura-do-sistema)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Começando](#começando)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+  - [Uso Local](#uso-local)
+- [Atalhos de Teclado](#atalhos-de-teclado)
+- [Scripts Disponíveis](#scripts-disponíveis)
+- [Deploy](#deploy)
+- [FAQ](#faq)
+- [Licença](#licença)
+- [Contato](#contato)
 
-## Badges
+---
 
-[![CI](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/ci.yml?style=flat&label=CI&logo=githubactions&logoColor=white)](https://github.com/ESousa97/Vibes/actions/workflows/ci.yml)
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/ESousa97/Vibes/codeql.yml?style=flat&label=CodeQL&logo=github)](https://github.com/ESousa97/Vibes/actions/workflows/codeql.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/ESousa97/Vibes/badge?style=flat)](https://www.codefactor.io/repository/github/ESousa97/Vibes)
-[![Code Quality](https://img.shields.io/badge/code%20quality-eslint-blue?style=flat&logo=eslint)](https://eslint.org/)
-[![Coverage](https://img.shields.io/badge/coverage-local%20only-lightgrey?style=flat)](https://github.com/ESousa97/Vibes/actions)
-[![Licença](https://img.shields.io/badge/license-MIT-green?style=flat&logo=github)](LICENSE)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vibes-lemon.vercel.app)
+## Sobre o Projeto
 
-## Sumário (Table of Contents)
+Este projeto é uma aplicação web de página única (SPA) puramente client-side, concebida como um santuário digital para relaxamento e contemplação. Desenvolvida com Vanilla JavaScript (ES6+), oferece uma galeria interativa de paisagens naturais com animações CSS3 procedurais, efeitos de glassmorphism e gerenciamento inteligente de recursos.
 
-1. [Introdução e Motivação](#introdução-e-motivação)
-3. [Arquitetura do Sistema](#arquitetura-do-sistema)
-4. [Decisões de Design Chave](#decisões-de-design-chave)
-5. [✨ Funcionalidades Detalhadas (com Casos de Uso)](#-funcionalidades-detalhadas-com-casos-de-uso)
-6. [🛠️ Tech Stack Detalhado](#️-tech-stack-detalhado)
-7. [📂 Estrutura Detalhada do Código-Fonte](#-estrutura-detalhada-do-código-fonte)
-8. [📋 Pré-requisitos Avançados](#-pré-requisitos-avançados)
-9. [🚀 Guia de Instalação e Configuração](#-guia-de-instalação-e-configuração)
-10. [⚙️ Uso Avançado e Exemplos](#️-uso-avançado-e-exemplos)
-11. [🧪 Estratégia de Testes e Qualidade de Código](#-estratégia-de-testes-e-qualidade-de-código)
-12. [🚢 Deployment Detalhado e Escalabilidade](#-deployment-detalhado-e-escalabilidade)
-13. [❓ FAQ (Perguntas Frequentes)](#-faq-perguntas-frequentes)
-14. [📜 Licença e Aspectos Legais](#-licença-e-aspectos-legais)
-15. [📞 Contato](#-contato)
+O repositório prioriza:
 
-## Introdução e Motivação
+- **Zero dependências externas** — JavaScript puro com OOP para gerenciamento de estado, sem frameworks
+- **CSS como motor de animação** — Keyframes, transitions e transforms acelerados por GPU, liberando a main thread
+- **Otimização proativa** — `IntersectionObserver` pausa o slideshow quando fora do viewport, conservando CPU e bateria
+- **Design imersivo** — Glassmorphism, orbes flutuantes e partículas procedurais para atmosfera contemplativa
+- **Controle multimodal** — Botões na interface, atalhos de teclado e gestos de toque
 
-No cenário digital contemporâneo, caracterizado pela sobrecarga de informações (*infobesity*) e pela constante demanda por atenção, emerge uma necessidade crítica por espaços digitais que promovam a tranquilidade e a introspecção. O projeto "Vibes" nasce como uma antítese a essa tendência, propondo um ambiente web minimalista e imersivo, projetado para funcionar como um refúgio digital.
+### Por que Vanilla JS?
 
-A motivação central é investigar a interseção entre design de interface, tecnologia front-end e bem-estar psicológico, explorando como a manipulação cuidadosa de elementos visuais e interativos pode influenciar positivamente o estado emocional do usuário. A proposta de valor única reside em sua abordagem purista e performática, evitando deliberadamente frameworks JavaScript pesados para demonstrar a potência das tecnologias web fundamentais.
+Decisão deliberada para manter a aplicação extremamente leve e performática. O escopo definido do projeto não justifica overhead de frameworks, e a abordagem demonstra a capacidade das tecnologias web nativas para criar experiências ricas com gerenciamento de estado via OOP (classe `VibesSlideshow`).
+
+---
+
+## Funcionalidades
+
+- **Slideshow automatizado** — Transições suaves entre paisagens de alta qualidade com barra de progresso visual
+- **Controle multimodal** — Navegação por botões, teclado (setas, espaço, Home, End) e toque
+- **Atmosfera visual procedural** — Orbes coloridas flutuantes e partículas brilhantes geradas via CSS keyframes
+- **Gerenciamento inteligente de recursos** — Pausa automática ao mudar de aba ou minimizar janela
+- **Design glassmorphism** — Efeitos com `backdrop-filter` e transparências para interface contemporânea
+- **Responsivo** — Design adaptativo para desktop, tablet e mobile
+
+---
+
+## Tecnologias
+
+### Core
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+
+### Ferramentas de Desenvolvimento
+
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white)
+![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat&logo=stylelint&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
+
+**Requisitos mínimos:**
+
+- Navegador moderno (Chrome 80+, Firefox 78+, Safari 14+, Edge 80+)
+- Node.js 18+ (apenas para lint/test)
+
+---
 
 ## Arquitetura do Sistema
 
-A arquitetura do "Vibes" é inteiramente client-side, otimizada para performance e simplicidade de implantação. A estrutura segue um padrão adaptado do Model-View-Controller (MVC) para o contexto de uma SPA baseada em Vanilla JS.
+A aplicação segue um padrão adaptado de MVC para SPA em Vanilla JS, inteiramente client-side:
 
-```mermaid
-graph TD
-    subgraph "Browser Environment"
-        UI["🖼️ Camada de Apresentação / View<br/>(HTML DOM)"]
-        Logic["⚙️ Lógica de Controle / Controller<br/>(VibesSlideshow Class)"]
-        State["🧠 Modelo de Estado / Model<br/>(JS Object State: currentSlide, isPlaying)"]
-        Engine["🎨 Motor de Animação / Animation Engine<br/>(CSS Keyframes & Transitions)"]
-        Events["🖱️ Gestor de Eventos / Event Manager<br/>(DOM Event Listeners)"]
-    end
-
-    User["👤 Usuário"] --> UI
-    User --> Events
-    Events --> Logic
-    Logic --> State
-    Logic --> UI
-    Logic --> Engine
-    State --> UI
-    Engine --> UI
+```
+Usuário
+  → DOM Event Listeners (Gestor de Eventos)
+    → VibesSlideshow Class (Controller / Lógica de Controle)
+      → Estado Interno (Model: currentSlide, isPlaying, slideInterval)
+      → HTML DOM (View / Camada de Apresentação)
+      → CSS Keyframes & Transitions (Motor de Animação, acelerado por GPU)
+        → IntersectionObserver (Otimização de visibilidade)
 ```
 
-**Componentes Arquiteturais:**
+### Componentes Principais
 
-**Camada de Apresentação (View):** Composta pelo `index.html`, define estrutura semântica do DOM. Camada passiva que serve como receptáculo para conteúdo dinâmico e efeitos visuais.
+| Componente            | Responsabilidade                                                        |
+| --------------------- | ----------------------------------------------------------------------- |
+| **View**              | `index.html` — estrutura semântica do DOM, receptáculo para conteúdo    |
+| **Animation Engine**  | CSS3 — keyframes, transitions, transforms para fundo e transições       |
+| **Controller**        | `VibesSlideshow` — ciclo de vida do slideshow, eventos, reprodução      |
+| **Model**             | Propriedades internas — `currentSlide`, `isPlaying`, `slideInterval`    |
+| **Event Manager**     | Event listeners — tradução de ações do usuário em chamadas de método    |
 
-**Motor de Animação (Animation Engine):** Implementado exclusivamente com CSS3, utiliza `keyframes`, `transitions` e `transforms` para renderizar animações de fundo (orbes e partículas) e transições do slideshow.
+---
 
-**Lógica de Controle (Controller):** Cérebro da aplicação, encapsulado na classe `VibesSlideshow`. Responsável por lógica de negócio: gerenciar ciclo de vida do slideshow, responder a eventos e controlar reprodução das animações.
-
-**Modelo de Estado (Model):** Representado pelas propriedades internas da classe `VibesSlideshow` (`currentSlide`, `isPlaying`, `slideInterval`). Estado simples e localizado que dita comportamento da aplicação.
-
-**Gestor de Eventos (Event Manager):** Coleção de event listeners configurados pela classe `VibesSlideshow`, traduzindo ações do usuário em chamadas de método.
-
-## Decisões de Design Chave
-
-1. **JavaScript "Vanilla" (ES6+) como Pilar Lógico:** Decisão estratégica para criar base de código performática com zero dependências externas, demonstrando capacidade da linguagem nativa para gerenciar estados complexos através de OOP.
-
-2. **CSS como Motor de Animação Principal:** Abordagem declarativa com CSS em vez de manipulação via JavaScript. Animações procedurais definidas por `keyframes` liberam main thread e permitem otimização na GPU.
-
-3. **Otimização Proativa com `IntersectionObserver`:** Implementação para pausar slideshow quando fora do viewport, conservando recursos CPU e bateria para melhor experiência do usuário.
-
-4. **CSS Modular para Manutenibilidade:** Estilos consolidados em `Styles/styles.css`, mantendo separação clara entre estrutura e apresentação.
-
-5. **Design Glassmorphism:** Efeitos visuais modernos com backdrop-filter e transparências para criar atmosfera imersiva e contemporânea.
-
-## ✨ Funcionalidades Detalhadas (com Casos de Uso)
-
-### 1. Slideshow Imersivo e Automatizado
-
-**Propósito:** Núcleo da aplicação com transições suaves entre paisagens de alta qualidade, incluindo barra de progresso visual.
-
-**Caso de Uso:** Usuário abre aplicação e a deixa em segundo plano em monitor para criar ambiente de trabalho calmo, observando paisagens mudarem passivamente.
-
-### 2. Controle Multimodal de Navegação
-
-**Propósito:** Controle total através de botões na interface, atalhos de teclado e gestos de toque.
-
-**Caso de Uso:** Usuário encontra imagem que lhe agrada, pressiona barra de espaço para pausar slideshow, depois usa setas do teclado para explorar outras imagens em próprio ritmo.
-
-### 3. Atmosfera Visual Dinâmica e Procedural
-
-**Propósito:** Interface enriquecida com animações de fundo sutis: orbes coloridas flutuantes e partículas brilhantes, geradas proceduralmente via CSS.
-
-**Caso de Uso:** Usuário foca atenção no ambiente como um todo, percebendo movimento suave das luzes que contribui para efeito hipnótico e relaxante.
-
-### 4. Gerenciamento Inteligente de Recursos
-
-**Propósito:** Aplicação monitora estado de visibilidade, pausando animações quando usuário muda de aba ou minimiza janela.
-
-**Caso de Uso:** Usuário deixa "Vibes" aberto em aba enquanto trabalha em outra. Aplicação não consome recursos desnecessários, retomando experiência transparentemente ao retornar.
-
-## 🛠️ Tech Stack Detalhado
-
-| Categoria | Tecnologia | Versão | Propósito no Projeto | Justificativa da Escolha |
-| :--- | :--- | :--- | :--- | :--- |
-| **Frontend (Linguagem)** | **HTML5** | N/A | Estruturação semântica do conteúdo | Padrão fundamental da web para marcação |
-| **Frontend (Estilo)** | **CSS3** | N/A | Estilização, layout, glassmorphism e motor de animação | Animações performáticas aceleradas por GPU de forma declarativa |
-| **Frontend (Lógica)** | **JavaScript** | ES6+ | Lógica de controle, gerenciamento de estado e interatividade | Performance nativa, zero dependências, controle granular |
-| **Frontend (API Web)** | **IntersectionObserver** | N/A | Pausar/retomar slideshow baseado em visibilidade | Abordagem moderna para otimização de performance |
-| **Frontend (API Web)** | **DOM API** | N/A | Manipulação direta da estrutura da página | Interface nativa do navegador para interação com conteúdo |
-| **Design (Tipografia)** | **Google Fonts (Inter)** | N/A | Fonte principal da interface | Fonte variável legível em diversas resoluções |
-| **DevOps (Plataforma)** | **Vercel** | N/A | Hospedagem, deploy contínuo e CDN global | Integração GitHub, zero configuração para projetos estáticos |
-| **DevOps (Controle)** | **Git & GitHub** | N/A | Versionamento e gerenciamento do projeto | Padrão da indústria para desenvolvimento e controle de versão |
-
-## 📂 Estrutura Detalhada do Código-Fonte
+## Estrutura do Projeto
 
 ```
 Vibes/
-├── .github/               # Workflows e templates
+├── index.html             # Ponto de entrada da aplicação
 ├── Assets/                # Imagens do slideshow
-├── Styles/                # Estilos CSS
-├── scripts/               # JavaScript da aplicação
-├── docs/                  # Documentação adicional
-├── public
-├── src/                   # Reservado para modularização futura
-├── tests/                 # Testes automatizados
+├── Styles/
+│   └── styles.css         # Estilização, glassmorphism e animações procedurais
+├── scripts/               # Lógica JavaScript da aplicação
+├── tests/                 # Testes automatizados (Vitest + JSDOM)
 ├── tools/                 # Scripts de verificação
-├── index.html             # Ponto de entrada
-├── LICENSE                # Licença MIT
-├── package.json           # Scripts e ferramentas
-├── vercel.json            # Configuração para deploy Vercel
-└── README.md              # Documentação
+├── docs/                  # Documentação adicional
+├── src/                   # Reservado para modularização futura
+├── public/                # Ativos públicos
+├── .github/
+│   └── workflows/
+│       ├── ci.yml         # Pipeline de CI
+│       └── codeql.yml     # Análise de segurança
+├── vercel.json            # Configuração de deploy Vercel
+├── package.json           # Dependências e scripts
+└── LICENSE                # Licença MIT
 ```
 
-**Detalhamento dos Arquivos:**
+---
 
-- `index.html`: Estrutura HTML e referências para CSS/JS externos
-- `Styles/`: Folha de estilos principal
-- `scripts/`: Lógica do slideshow
-- `tests/`: Base mínima de testes com Vitest + JSDOM
-- `vercel.json`: Configuração de rewrites para comportamento de SPA
+## Começando
 
-## 📋 Pré-requisitos Avançados
+### Pré-requisitos
 
-Para desenvolvimento e execução local:
+A aplicação é puramente client-side e roda diretamente no navegador. Para lint e testes:
 
-**Para Usuários:**
-- **Navegador Web Moderno:** Chrome v80+, Firefox v78+, Safari v14+, Edge v80+ (suporte completo a HTML5, CSS3, ES6+)
+```bash
+node --version  # v18 ou superior (opcional, para lint/test)
+npm --version   # v9 ou superior (opcional, para lint/test)
+```
 
-**Para Desenvolvimento:**
-- **Git:** Sistema de controle de versão
-- **Editor de Código:** VS Code, Sublime Text, WebStorm
-- **Servidor Web Local (Opcional):** Live Server extension para VS Code para emulação fiel do ambiente de produção
+### Instalação
 
-## 🚀 Guia de Instalação e Configuração
+1. **Clone o repositório**
 
-1. **Clonar o Repositório:**
 ```bash
 git clone https://github.com/ESousa97/Vibes.git
 cd Vibes
 ```
 
-2. **Rodar localmente:**
-```bash
-# Abra index.html diretamente no navegador
-# ou use um servidor local (ex: Live Server)
-```
+2. **Instale as dependências de desenvolvimento** (opcional)
 
-3. **Ferramentas de qualidade (opcional):**
 ```bash
 npm install
-npm run lint
-npm run test
 ```
 
-### Scripts de Desenvolvimento
+### Uso Local
+
+**Abrir diretamente no navegador:**
+
 ```bash
-# Lint completo
-npm run lint
+# Windows
+start index.html
 
-# Testes com cobertura
-npm run test
+# macOS
+open index.html
 
-# Verificação de build estático
-npm run build
+# Linux
+xdg-open index.html
 ```
 
-## ⚙️ Uso Avançado e Exemplos
+**Com servidor local (recomendado para desenvolvimento):**
 
-**Atalhos de Teclado:**
-
-- **`Barra de Espaço`:** Alterna entre Play e Pause no slideshow
-- **`Seta Esquerda (←)`:** Navega para slide anterior
-- **`Seta Direita (→)`:** Navega para próximo slide
-- **`Home`:** Salta para primeiro slide da galeria
-- **`End`:** Salta para último slide da galeria
-
-**Customização de Imagens:**
-
-Para adicionar ou alterar imagens do slideshow:
-
-```html
-<!-- Edite as seções no index.html -->
-<div class="slide">
-    <img src="Assets/sua-nova-imagem.jpg" alt="Descrição da imagem">
-</div>
-```
-
-**Depuração via Console:**
-
-```javascript
-// Verificar estado atual do slideshow
-console.log(vibesSlideshow.currentSlide);
-console.log(vibesSlideshow.isPlaying);
-
-// Controlar programaticamente
-vibesSlideshow.nextSlide();
-vibesSlideshow.togglePlayPause();
-```
-
-## 🧪 Estratégia de Testes e Qualidade de Código
-
-**Qualidade Atual:**
-- Lint HTML/CSS/JS com `html-validate`, `stylelint` e `eslint`.
-- Testes básicos com Vitest + JSDOM.
-
-**Testes Implementados:**
-- Validação de quantidade de slides e indicadores.
-- Verificação de avanço de slide ao chamar `nextSlide()`.
-
-## 🚢 Deployment Detalhado e Escalabilidade
-
-**Plataforma:** Implantado na **Vercel** com otimização para aplicações front-end.
-
-**Processo de Deploy:**
-- Deploy contínuo automatizado via GitHub
-- Detecção automática de projeto estático
-- Zero configuração necessária
-
-**Configuração (`vercel.json`):**
-```json
-{
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-    ]
-}
-```
-
-**Escalabilidade:**
-- **Inerentemente alta:** Site estático servido por CDN global
-- **Baixa latência:** Ativos distribuídos geograficamente
-- **Performance:** Cache de navegador otimiza carregamentos subsequentes
-- **Recursos mínimos:** Sem dependência de servidor backend
-
-**Otimizações de Produção:**
 ```bash
-# Minificação de CSS
-npx clean-css-cli --output styles.min.css Styles/styles.css
-
-# Compressão de imagens
-npx imagemin Assets/*.png --out-dir=optimized/
-
-# Análise de performance
-npx lighthouse https://vibes-lemon.vercel.app
+# VS Code Live Server ou:
+npx serve .
 ```
 
-## ❓ FAQ (Perguntas Frequentes)
+Acesse: `http://localhost:3000/`
 
-**P: Por que o CSS está dentro do HTML e não em arquivo separado?**
-**R:** Decisão pragmática para otimizar carregamento inicial eliminando requisição de rede adicional. Para projetos maiores, separação de arquivos é melhor prática.
-
-**P: Por que usar JavaScript "puro" em vez de frameworks como React ou Vue?**
-**R:** Escolha deliberada para manter aplicação extremamente leve, performática e com zero dependências, demonstrando capacidade das ferramentas nativas do navegador.
-
-**P: Como adicionar minhas próprias imagens ao slideshow?**
-**R:** Edite diretamente o `index.html`. Localize seções `<div class="slide">` e altere atributo `src` das tags `<img>`. Adicione novas imagens ao diretório `Assets/`.
-
-**P: A aplicação funciona offline?**
-**R:** Sim, após primeiro carregamento. Todas as imagens e scripts são carregados inicialmente, permitindo uso sem conexão à internet.
-
-**P: É possível adicionar áudio de relaxamento?**
-**R:** Atualmente não implementado, mas está no roadmap futuro utilizando Web Audio API para trilhas sonoras com looping perfeito.
-
-**P: O projeto é responsivo?**
-**R:** Sim, totalmente responsivo com design adaptativo para desktop, tablet e mobile, mantendo qualidade visual em todas as resoluções.
-
-## 📜 Licença e Aspectos Legais
-
-Este projeto é distribuído sob a **Licença MIT**, uma licença permissiva que permite reutilização, modificação e distribuição do código (inclusive para fins comerciais), desde que o aviso de direitos autorais seja mantido. Para detalhes completos, consulte o arquivo [LICENSE](LICENSE).
-
-## 📞 Contato
-
-- **GitHub:** [@ESousa97](https://github.com/ESousa97)
-- **LinkedIn:** [Enoque Sousa](https://www.linkedin.com/in/enoque-sousa-bb89aa168/)
-- **Demo Online:** [vibes-lemon.vercel.app](https://vibes-lemon.vercel.app)
-- **Issues:** Para bugs e sugestões, use [GitHub Issues](https://github.com/ESousa97/Vibes/issues)
+**Produção:** [vibes-lemon.vercel.app](https://vibes-lemon.vercel.app)
 
 ---
 
-<p align="center">
-  <img src="https://img.shields.io/github/stars/ESousa97/Vibes?style=social" alt="GitHub Stars">
-  <img src="https://img.shields.io/github/forks/ESousa97/Vibes?style=social" alt="GitHub Forks">
-</p>
+## Atalhos de Teclado
 
-<p align="center">
-  <em>Desenvolvido com ❤️ por José Enoque - Criando santuários digitais para o bem-estar contemplativo</em>
-</p>
+| Tecla              | Ação                           |
+| ------------------ | ------------------------------ |
+| `Barra de Espaço`  | Alterna Play / Pause           |
+| `Seta Esquerda ←`  | Slide anterior                 |
+| `Seta Direita →`   | Próximo slide                  |
+| `Home`             | Primeiro slide                 |
+| `End`              | Último slide                   |
 
+---
 
-> ✨ **Criado em:** 9 de nov. de 2024 às 01:13
+## Scripts Disponíveis
+
+```bash
+# Executar lint
+npm run lint
+
+# Rodar testes
+npm run test
+
+# Build estático
+npm run build
+```
+
+---
+
+## Deploy
+
+### Vercel (Produção)
+
+A aplicação é um site estático com deploy contínuo automatizado via GitHub. Zero configuração necessária.
+
+```bash
+vercel --prod
+```
+
+O `vercel.json` configura rewrites para comportamento de SPA:
+
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+O projeto também é compatível com Netlify, GitHub Pages ou qualquer plataforma de hospedagem estática.
+
+---
+
+## FAQ
+
+<details>
+<summary><strong>Por que JavaScript puro em vez de React ou Vue?</strong></summary>
+
+Escolha deliberada para manter a aplicação extremamente leve e sem dependências. O escopo do projeto não justifica overhead de frameworks, e a abordagem demonstra a capacidade das tecnologias web nativas.
+</details>
+
+<details>
+<summary><strong>Como adicionar novas imagens ao slideshow?</strong></summary>
+
+Adicione imagens ao diretório `Assets/` e edite o `index.html`, inserindo novas seções `<div class="slide"><img src="Assets/sua-imagem.jpg" alt="Descrição"></div>`.
+</details>
+
+<details>
+<summary><strong>A aplicação funciona offline?</strong></summary>
+
+Sim. Após o primeiro carregamento, todas as imagens e scripts já estão disponíveis localmente, permitindo uso sem conexão.
+</details>
+
+<details>
+<summary><strong>O projeto é responsivo?</strong></summary>
+
+Sim, totalmente responsivo com design adaptativo para desktop, tablet e mobile, utilizando media queries e unidades relativas.
+</details>
+
+---
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+```
+MIT License - você pode usar, copiar, modificar e distribuir este código.
+```
+
+---
+
+## Contato
+
+**José Enoque Costa de Sousa**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enoque-sousa-bb89aa168/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/ESousa97)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=todoist&logoColor=white)](https://enoquesousa.vercel.app)
+
+---
+
+<div align="center">
+
+**[⬆ Voltar ao topo](#vibes)**
+
+Feito com ❤️ por [José Enoque](https://github.com/ESousa97)
+
+**Status do Projeto:** Archived — Sem novas atualizações
+
+</div>
