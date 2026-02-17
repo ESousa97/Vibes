@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.18.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-html": "^8.1.4",
     "globals": "^17.0.0",
     "html-validate": "^10.7.0",
